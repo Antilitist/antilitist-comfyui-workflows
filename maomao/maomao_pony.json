@@ -1,0 +1,435 @@
+{
+ "last_node_id": 8,
+ "last_link_id": 11,
+ "nodes": [
+  {
+   "id": 1,
+   "type": "CheckpointLoaderSimple",
+   "pos": [
+    0,
+    0
+   ],
+   "size": [
+    320,
+    120
+   ],
+   "flags": {},
+   "order": 1,
+   "mode": 0,
+   "inputs": [],
+   "outputs": [
+    {
+     "name": "MODEL",
+     "type": "MODEL",
+     "links": [
+      1
+     ]
+    },
+    {
+     "name": "CLIP",
+     "type": "CLIP",
+     "links": [
+      2
+     ]
+    },
+    {
+     "name": "VAE",
+     "type": "VAE",
+     "links": [
+      9
+     ]
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "CheckpointLoaderSimple"
+   },
+   "widgets_values": [
+    "pony\\ponyDiffusionV6XL_v6StartWithThisOne.safetensors"
+   ],
+   "title": "Pony V6 XL checkpoint"
+  },
+  {
+   "id": 2,
+   "type": "LoraLoader",
+   "pos": [
+    360,
+    0
+   ],
+   "size": [
+    320,
+    120
+   ],
+   "flags": {},
+   "order": 2,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "model",
+     "type": "MODEL",
+     "link": 1
+    },
+    {
+     "name": "clip",
+     "type": "CLIP",
+     "link": 2
+    }
+   ],
+   "outputs": [
+    {
+     "name": "MODEL",
+     "type": "MODEL",
+     "links": [
+      3
+     ]
+    },
+    {
+     "name": "CLIP",
+     "type": "CLIP",
+     "links": [
+      4,
+      5
+     ]
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "LoraLoader"
+   },
+   "widgets_values": [
+    "maomao\\maomao_320544_PONY_v1.safetensors",
+    0.9,
+    0.9
+   ],
+   "title": "Maomao Pony LoRA (swap here)"
+  },
+  {
+   "id": 3,
+   "type": "CLIPTextEncode",
+   "pos": [
+    720,
+    0
+   ],
+   "size": [
+    320,
+    120
+   ],
+   "flags": {},
+   "order": 3,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "clip",
+     "type": "CLIP",
+     "link": 4
+    }
+   ],
+   "outputs": [
+    {
+     "name": "CONDITIONING",
+     "type": "CONDITIONING",
+     "links": [
+      6
+     ]
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "CLIPTextEncode"
+   },
+   "widgets_values": [
+    "score_9, score_8_up, score_7_up, source_anime, rating_safe, 1girl, adult woman, maomao, green hair, blue eyes, blunt bangs, freckles, hair bun, single hair bun, japanese clothes, green robe, long sleeves, wide sleeves, red skirt, apothecary shop, calm smile, upper body, modest proportions, wholesome, fully clothed"
+   ],
+   "title": "Positive"
+  },
+  {
+   "id": 4,
+   "type": "CLIPTextEncode",
+   "pos": [
+    720,
+    200
+   ],
+   "size": [
+    320,
+    120
+   ],
+   "flags": {},
+   "order": 4,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "clip",
+     "type": "CLIP",
+     "link": 5
+    }
+   ],
+   "outputs": [
+    {
+     "name": "CONDITIONING",
+     "type": "CONDITIONING",
+     "links": [
+      7
+     ]
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "CLIPTextEncode"
+   },
+   "widgets_values": [
+    "score_4, score_5, score_6, rating_explicit, rating_questionable, exaggerated proportions, nsfw, lowres, bad anatomy, bad hands, worst quality, low quality, blurry, watermark, text"
+   ],
+   "title": "Negative"
+  },
+  {
+   "id": 5,
+   "type": "EmptyLatentImage",
+   "pos": [
+    360,
+    250
+   ],
+   "size": [
+    320,
+    120
+   ],
+   "flags": {},
+   "order": 5,
+   "mode": 0,
+   "inputs": [],
+   "outputs": [
+    {
+     "name": "LATENT",
+     "type": "LATENT",
+     "links": [
+      8
+     ]
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "EmptyLatentImage"
+   },
+   "widgets_values": [
+    832,
+    1216,
+    1
+   ]
+  },
+  {
+   "id": 6,
+   "type": "KSampler",
+   "pos": [
+    1080,
+    0
+   ],
+   "size": [
+    320,
+    120
+   ],
+   "flags": {},
+   "order": 6,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "model",
+     "type": "MODEL",
+     "link": 3
+    },
+    {
+     "name": "positive",
+     "type": "CONDITIONING",
+     "link": 6
+    },
+    {
+     "name": "negative",
+     "type": "CONDITIONING",
+     "link": 7
+    },
+    {
+     "name": "latent_image",
+     "type": "LATENT",
+     "link": 8
+    }
+   ],
+   "outputs": [
+    {
+     "name": "LATENT",
+     "type": "LATENT",
+     "links": [
+      10
+     ]
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "KSampler"
+   },
+   "widgets_values": [
+    0,
+    "randomize",
+    25,
+    7,
+    "euler_ancestral",
+    "normal",
+    1.0
+   ]
+  },
+  {
+   "id": 7,
+   "type": "VAEDecode",
+   "pos": [
+    1440,
+    0
+   ],
+   "size": [
+    320,
+    120
+   ],
+   "flags": {},
+   "order": 7,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "samples",
+     "type": "LATENT",
+     "link": 10
+    },
+    {
+     "name": "vae",
+     "type": "VAE",
+     "link": 9
+    }
+   ],
+   "outputs": [
+    {
+     "name": "IMAGE",
+     "type": "IMAGE",
+     "links": [
+      11
+     ]
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "VAEDecode"
+   },
+   "widgets_values": []
+  },
+  {
+   "id": 8,
+   "type": "SaveImage",
+   "pos": [
+    1680,
+    0
+   ],
+   "size": [
+    320,
+    120
+   ],
+   "flags": {},
+   "order": 8,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "images",
+     "type": "IMAGE",
+     "link": 11
+    }
+   ],
+   "outputs": [],
+   "properties": {
+    "Node name for S&R": "SaveImage"
+   },
+   "widgets_values": [
+    "maomao/maomao_pony"
+   ]
+  }
+ ],
+ "links": [
+  [
+   1,
+   1,
+   0,
+   2,
+   0,
+   "MODEL"
+  ],
+  [
+   2,
+   1,
+   1,
+   2,
+   1,
+   "CLIP"
+  ],
+  [
+   3,
+   2,
+   0,
+   6,
+   0,
+   "MODEL"
+  ],
+  [
+   4,
+   2,
+   1,
+   3,
+   0,
+   "CLIP"
+  ],
+  [
+   5,
+   2,
+   1,
+   4,
+   0,
+   "CLIP"
+  ],
+  [
+   6,
+   3,
+   0,
+   6,
+   1,
+   "CONDITIONING"
+  ],
+  [
+   7,
+   4,
+   0,
+   6,
+   2,
+   "CONDITIONING"
+  ],
+  [
+   8,
+   5,
+   0,
+   6,
+   3,
+   "LATENT"
+  ],
+  [
+   9,
+   1,
+   2,
+   7,
+   1,
+   "VAE"
+  ],
+  [
+   10,
+   6,
+   0,
+   7,
+   0,
+   "LATENT"
+  ],
+  [
+   11,
+   7,
+   0,
+   8,
+   0,
+   "IMAGE"
+  ]
+ ],
+ "groups": [],
+ "config": {},
+ "extra": {},
+ "version": 0.4
+}
