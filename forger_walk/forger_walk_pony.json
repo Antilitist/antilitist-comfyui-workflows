@@ -1,0 +1,341 @@
+{
+ "1": {
+  "class_type": "CheckpointLoaderSimple",
+  "inputs": {
+   "ckpt_name": "pony\\ponyDiffusionV6XL_v6StartWithThisOne.safetensors"
+  }
+ },
+ "g": {
+  "class_type": "CLIPTextEncode",
+  "inputs": {
+   "clip": [
+    "1",
+    1
+   ],
+   "text": "score_9, score_8_up, score_7_up, source_anime, rating_safe, exactly three people, 1boy, 2girls, no other people, empty street, three people walking side by side, family holding hands, little girl in the middle holding hands with man on left and woman on right, joined hands, full body, mid shot, same distance from viewer, sunny autumn city street, tree-lined sidewalk, orange and yellow leaves, falling leaves, european buildings, clear sky at top, cute face, beautiful detailed eyes, clean lineart, anime screencap, family-friendly, wholesome, fully clothed"
+  }
+ },
+ "n": {
+  "class_type": "CLIPTextEncode",
+  "inputs": {
+   "clip": [
+    "1",
+    1
+   ],
+   "text": "score_4, score_5, score_6, rating_explicit, rating_questionable, nsfw, suggestive, revealing clothes, cleavage, mature, sexy, bare shoulders, cigarette, smoking person, weapon, gun, knife, exaggerated proportions, lowres, extra people, crowd, background people, second child, multiple children, bad anatomy, bad hands, extra fingers, deformed, duplicate, clone, worst quality, low quality, blurry, watermark, text"
+  }
+ },
+ "h0": {
+  "class_type": "CreateHookLora",
+  "inputs": {
+   "lora_name": "spyxfamily\\Loid_Forger-75.safetensors",
+   "strength_model": 0.7,
+   "strength_clip": 0.7
+  }
+ },
+ "c0": {
+  "class_type": "SetClipHooks",
+  "inputs": {
+   "clip": [
+    "1",
+    1
+   ],
+   "hooks": [
+    "h0",
+    0
+   ],
+   "apply_to_conds": true,
+   "schedule_clip": false
+  }
+ },
+ "t0": {
+  "class_type": "CLIPTextEncode",
+  "inputs": {
+   "clip": [
+    "c0",
+    0
+   ],
+   "text": "score_9, score_8_up, score_7_up, source_anime, rating_safe, twilight, loid forger, 1boy, solo, adult man, blonde hair, short hair, green eyes, black suit, red necktie, blush, shy smile, looking to the side, walking, holding hands with child, full body, family-friendly, wholesome, fully clothed"
+  }
+ },
+ "a0": {
+  "class_type": "ConditioningSetAreaPercentage",
+  "inputs": {
+   "conditioning": [
+    "t0",
+    0
+   ],
+   "x": 0.0,
+   "y": 0.15,
+   "width": 0.45,
+   "height": 0.85,
+   "strength": 0.75
+  }
+ },
+ "m0": {
+  "class_type": "ConditioningCombine",
+  "inputs": {
+   "conditioning_1": [
+    "g",
+    0
+   ],
+   "conditioning_2": [
+    "a0",
+    0
+   ]
+  }
+ },
+ "h1": {
+  "class_type": "CreateHookLora",
+  "inputs": {
+   "lora_name": "spyxfamily\\Anya_Forger_-_Spy_X_Family.safetensors",
+   "strength_model": 0.62,
+   "strength_clip": 0.62
+  }
+ },
+ "c1": {
+  "class_type": "SetClipHooks",
+  "inputs": {
+   "clip": [
+    "1",
+    1
+   ],
+   "hooks": [
+    "h1",
+    0
+   ],
+   "apply_to_conds": true,
+   "schedule_clip": false
+  }
+ },
+ "t1": {
+  "class_type": "CLIPTextEncode",
+  "inputs": {
+   "clip": [
+    "c1",
+    0
+   ],
+   "text": "score_9, score_8_up, score_7_up, source_anime, rating_safe, anya forger, 1girl, solo, small child, pink hair, green eyes, hairpods, ahoge, eden academy school uniform, black dress, gold trim, red ribbon, smug, smirk, cute face, holding hands with both parents, arms out to sides, walking, full body, family-friendly, wholesome, fully clothed"
+  }
+ },
+ "a1": {
+  "class_type": "ConditioningSetAreaPercentage",
+  "inputs": {
+   "conditioning": [
+    "t1",
+    0
+   ],
+   "x": 0.3,
+   "y": 0.35,
+   "width": 0.4,
+   "height": 0.65,
+   "strength": 0.8
+  }
+ },
+ "m1": {
+  "class_type": "ConditioningCombine",
+  "inputs": {
+   "conditioning_1": [
+    "m0",
+    0
+   ],
+   "conditioning_2": [
+    "a1",
+    0
+   ]
+  }
+ },
+ "h2": {
+  "class_type": "CreateHookLora",
+  "inputs": {
+   "lora_name": "spyxfamily\\SpyxFamilyYorXL-v1-07.safetensors",
+   "strength_model": 0.6,
+   "strength_clip": 0.6
+  }
+ },
+ "c2": {
+  "class_type": "SetClipHooks",
+  "inputs": {
+   "clip": [
+    "1",
+    1
+   ],
+   "hooks": [
+    "h2",
+    0
+   ],
+   "apply_to_conds": true,
+   "schedule_clip": false
+  }
+ },
+ "t2": {
+  "class_type": "CLIPTextEncode",
+  "inputs": {
+   "clip": [
+    "c2",
+    0
+   ],
+   "text": "score_9, score_8_up, score_7_up, source_anime, rating_safe, ChopioYor, 1girl, solo, adult woman, long black hair, red eyes, gold earrings, white hairband, red coat, long coat, buttoned coat, long sleeves, turtleneck, blush, shy smile, looking to the side, walking, holding hands with child, full body, family-friendly, wholesome, fully clothed"
+  }
+ },
+ "a2": {
+  "class_type": "ConditioningSetAreaPercentage",
+  "inputs": {
+   "conditioning": [
+    "t2",
+    0
+   ],
+   "x": 0.55,
+   "y": 0.15,
+   "width": 0.45,
+   "height": 0.85,
+   "strength": 0.75
+  }
+ },
+ "m2": {
+  "class_type": "ConditioningCombine",
+  "inputs": {
+   "conditioning_1": [
+    "m1",
+    0
+   ],
+   "conditioning_2": [
+    "a2",
+    0
+   ]
+  }
+ },
+ "t3": {
+  "class_type": "CLIPTextEncode",
+  "inputs": {
+   "clip": [
+    "1",
+    1
+   ],
+   "text": "score_9, score_8_up, score_7_up, source_anime, rating_safe, clear blue sky, empty sky, autumn tree branches, family-friendly, wholesome, fully clothed"
+  }
+ },
+ "a3": {
+  "class_type": "ConditioningSetAreaPercentage",
+  "inputs": {
+   "conditioning": [
+    "t3",
+    0
+   ],
+   "x": 0.0,
+   "y": 0.0,
+   "width": 1.0,
+   "height": 0.16,
+   "strength": 0.8
+  }
+ },
+ "m3": {
+  "class_type": "ConditioningCombine",
+  "inputs": {
+   "conditioning_1": [
+    "m2",
+    0
+   ],
+   "conditioning_2": [
+    "a3",
+    0
+   ]
+  }
+ },
+ "5": {
+  "class_type": "EmptyLatentImage",
+  "inputs": {
+   "width": 1216,
+   "height": 832,
+   "batch_size": 1
+  }
+ },
+ "6": {
+  "class_type": "KSampler",
+  "inputs": {
+   "model": [
+    "1",
+    0
+   ],
+   "positive": [
+    "m3",
+    0
+   ],
+   "negative": [
+    "n",
+    0
+   ],
+   "latent_image": [
+    "5",
+    0
+   ],
+   "seed": 0,
+   "steps": 28,
+   "cfg": 7,
+   "sampler_name": "euler_ancestral",
+   "scheduler": "normal",
+   "denoise": 1.0
+  }
+ },
+ "7": {
+  "class_type": "VAEDecode",
+  "inputs": {
+   "samples": [
+    "6b",
+    0
+   ],
+   "vae": [
+    "1",
+    2
+   ]
+  }
+ },
+ "8": {
+  "class_type": "SaveImage",
+  "inputs": {
+   "images": [
+    "7",
+    0
+   ],
+   "filename_prefix": "spyxfamily/forger_walk"
+  }
+ },
+ "u": {
+  "class_type": "LatentUpscaleBy",
+  "inputs": {
+   "samples": [
+    "6",
+    0
+   ],
+   "upscale_method": "nearest-exact",
+   "scale_by": 1.5
+  }
+ },
+ "6b": {
+  "class_type": "KSampler",
+  "inputs": {
+   "model": [
+    "1",
+    0
+   ],
+   "positive": [
+    "m3",
+    0
+   ],
+   "negative": [
+    "n",
+    0
+   ],
+   "latent_image": [
+    "u",
+    0
+   ],
+   "seed": 1,
+   "steps": 20,
+   "cfg": 6,
+   "sampler_name": "euler_ancestral",
+   "scheduler": "normal",
+   "denoise": 0.42
+  }
+ }
+}
