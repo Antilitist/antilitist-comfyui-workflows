@@ -1,0 +1,340 @@
+{
+ "1": {
+  "class_type": "CheckpointLoaderSimple",
+  "inputs": {
+   "ckpt_name": "pony\\ponyDiffusionV6XL_v6StartWithThisOne.safetensors"
+  }
+ },
+ "g": {
+  "class_type": "CLIPTextEncode",
+  "inputs": {
+   "clip": [
+    "1",
+    1
+   ],
+   "text": "score_9, score_8_up, score_7_up, source_anime, rating_safe, 1boy, 2girls, 1dog, family dinner at home, cozy dining room, warm lamp light, wooden dining table, plate of burnt black food with smoke in the center of the table, comedic, man on left, little girl in middle, woman on right, white fluffy dog by the table, family-friendly, wholesome, fully clothed"
+  }
+ },
+ "n": {
+  "class_type": "CLIPTextEncode",
+  "inputs": {
+   "clip": [
+    "1",
+    1
+   ],
+   "text": "score_4, score_5, score_6, rating_explicit, rating_questionable, nsfw, suggestive, revealing clothes, cleavage, mature, sexy, bare shoulders, cigarette, smoking person, weapon, gun, knife, exaggerated proportions, lowres, bad anatomy, bad hands, extra fingers, deformed, duplicate, clone, worst quality, low quality, blurry, watermark, text"
+  }
+ },
+ "h0": {
+  "class_type": "CreateHookLora",
+  "inputs": {
+   "lora_name": "spyxfamily\\Loid_Forger-75.safetensors",
+   "strength_model": 0.7,
+   "strength_clip": 0.7
+  }
+ },
+ "c0": {
+  "class_type": "SetClipHooks",
+  "inputs": {
+   "clip": [
+    "1",
+    1
+   ],
+   "hooks": [
+    "h0",
+    0
+   ],
+   "apply_to_conds": true,
+   "schedule_clip": false
+  }
+ },
+ "t0": {
+  "class_type": "CLIPTextEncode",
+  "inputs": {
+   "clip": [
+    "c0",
+    0
+   ],
+   "text": "score_9, score_8_up, score_7_up, source_anime, rating_safe, twilight, loid forger, 1boy, solo, adult man, blonde hair, short hair, suit, red necktie, nervous smile, sweatdrop, sitting at table, family-friendly, wholesome, fully clothed"
+  }
+ },
+ "a0": {
+  "class_type": "ConditioningSetAreaPercentage",
+  "inputs": {
+   "conditioning": [
+    "t0",
+    0
+   ],
+   "x": 0.0,
+   "y": 0.0,
+   "width": 0.36,
+   "height": 0.8,
+   "strength": 1.0
+  }
+ },
+ "m0": {
+  "class_type": "ConditioningCombine",
+  "inputs": {
+   "conditioning_1": [
+    "g",
+    0
+   ],
+   "conditioning_2": [
+    "a0",
+    0
+   ]
+  }
+ },
+ "h1": {
+  "class_type": "CreateHookLora",
+  "inputs": {
+   "lora_name": "spyxfamily\\Anya_Forger_-_Spy_X_Family.safetensors",
+   "strength_model": 0.75,
+   "strength_clip": 0.75
+  }
+ },
+ "c1": {
+  "class_type": "SetClipHooks",
+  "inputs": {
+   "clip": [
+    "1",
+    1
+   ],
+   "hooks": [
+    "h1",
+    0
+   ],
+   "apply_to_conds": true,
+   "schedule_clip": false
+  }
+ },
+ "t1": {
+  "class_type": "CLIPTextEncode",
+  "inputs": {
+   "clip": [
+    "c1",
+    0
+   ],
+   "text": "score_9, score_8_up, score_7_up, source_anime, rating_safe, anya forger, 1girl, solo, small child, pink hair, green eyes, hairpods, ahoge, black dress, shocked funny face, sitting at table, family-friendly, wholesome, fully clothed"
+  }
+ },
+ "a1": {
+  "class_type": "ConditioningSetAreaPercentage",
+  "inputs": {
+   "conditioning": [
+    "t1",
+    0
+   ],
+   "x": 0.34,
+   "y": 0.1,
+   "width": 0.32,
+   "height": 0.65,
+   "strength": 1.0
+  }
+ },
+ "m1": {
+  "class_type": "ConditioningCombine",
+  "inputs": {
+   "conditioning_1": [
+    "m0",
+    0
+   ],
+   "conditioning_2": [
+    "a1",
+    0
+   ]
+  }
+ },
+ "h2": {
+  "class_type": "CreateHookLora",
+  "inputs": {
+   "lora_name": "spyxfamily\\SpyxFamilyYorXL-v1-07.safetensors",
+   "strength_model": 0.65,
+   "strength_clip": 0.65
+  }
+ },
+ "c2": {
+  "class_type": "SetClipHooks",
+  "inputs": {
+   "clip": [
+    "1",
+    1
+   ],
+   "hooks": [
+    "h2",
+    0
+   ],
+   "apply_to_conds": true,
+   "schedule_clip": false
+  }
+ },
+ "t2": {
+  "class_type": "CLIPTextEncode",
+  "inputs": {
+   "clip": [
+    "c2",
+    0
+   ],
+   "text": "score_9, score_8_up, score_7_up, source_anime, rating_safe, ChopioYor, 1girl, solo, adult woman, long black hair, red eyes, gold earrings, white hairband, outfit_1, office lady, collared shirt, white shirt, green vest, long sleeves, proud smile, hands together, standing by table, family-friendly, wholesome, fully clothed"
+  }
+ },
+ "a2": {
+  "class_type": "ConditioningSetAreaPercentage",
+  "inputs": {
+   "conditioning": [
+    "t2",
+    0
+   ],
+   "x": 0.64,
+   "y": 0.0,
+   "width": 0.36,
+   "height": 0.85,
+   "strength": 1.0
+  }
+ },
+ "m2": {
+  "class_type": "ConditioningCombine",
+  "inputs": {
+   "conditioning_1": [
+    "m1",
+    0
+   ],
+   "conditioning_2": [
+    "a2",
+    0
+   ]
+  }
+ },
+ "t3": {
+  "class_type": "CLIPTextEncode",
+  "inputs": {
+   "clip": [
+    "1",
+    1
+   ],
+   "text": "score_9, score_8_up, score_7_up, source_anime, rating_safe, plate of burnt black charred food, black smoke rising, on dining table, family-friendly, wholesome, fully clothed"
+  }
+ },
+ "a3": {
+  "class_type": "ConditioningSetAreaPercentage",
+  "inputs": {
+   "conditioning": [
+    "t3",
+    0
+   ],
+   "x": 0.36,
+   "y": 0.55,
+   "width": 0.28,
+   "height": 0.3,
+   "strength": 0.9
+  }
+ },
+ "m3": {
+  "class_type": "ConditioningCombine",
+  "inputs": {
+   "conditioning_1": [
+    "m2",
+    0
+   ],
+   "conditioning_2": [
+    "a3",
+    0
+   ]
+  }
+ },
+ "t4": {
+  "class_type": "CLIPTextEncode",
+  "inputs": {
+   "clip": [
+    "1",
+    1
+   ],
+   "text": "score_9, score_8_up, score_7_up, source_anime, rating_safe, white fluffy dog, great pyrenees, sitting on floor, happy dog, family-friendly, wholesome, fully clothed"
+  }
+ },
+ "a4": {
+  "class_type": "ConditioningSetAreaPercentage",
+  "inputs": {
+   "conditioning": [
+    "t4",
+    0
+   ],
+   "x": 0.02,
+   "y": 0.62,
+   "width": 0.34,
+   "height": 0.38,
+   "strength": 1.0
+  }
+ },
+ "m4": {
+  "class_type": "ConditioningCombine",
+  "inputs": {
+   "conditioning_1": [
+    "m3",
+    0
+   ],
+   "conditioning_2": [
+    "a4",
+    0
+   ]
+  }
+ },
+ "5": {
+  "class_type": "EmptyLatentImage",
+  "inputs": {
+   "width": 1216,
+   "height": 832,
+   "batch_size": 1
+  }
+ },
+ "6": {
+  "class_type": "KSampler",
+  "inputs": {
+   "model": [
+    "1",
+    0
+   ],
+   "positive": [
+    "m4",
+    0
+   ],
+   "negative": [
+    "n",
+    0
+   ],
+   "latent_image": [
+    "5",
+    0
+   ],
+   "seed": 0,
+   "steps": 28,
+   "cfg": 7,
+   "sampler_name": "euler_ancestral",
+   "scheduler": "normal",
+   "denoise": 1.0
+  }
+ },
+ "7": {
+  "class_type": "VAEDecode",
+  "inputs": {
+   "samples": [
+    "6",
+    0
+   ],
+   "vae": [
+    "1",
+    2
+   ]
+  }
+ },
+ "8": {
+  "class_type": "SaveImage",
+  "inputs": {
+   "images": [
+    "7",
+    0
+   ],
+   "filename_prefix": "spyxfamily/forger_dinner"
+  }
+ }
+}
