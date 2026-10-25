@@ -10,6 +10,7 @@ Family-friendly ComfyUI workflows. Each folder has the workflow JSON (drag it in
 | [anima_detailer](anima_detailer/) | Anima + Smooth Detailer Booster (Megumin example) | Anima |
 | [anya_smug](anya_smug/) | Anya smug "heh" – Pony | Pony |
 | [anya_peanuts](anya_peanuts/) | Anya eating peanuts – Pony | Pony |
+| [semireal_illustrious](semireal_illustrious/) | Semi-real 2.5D, low key darkness slider LoRA, 1.5x hi-res fix (tiled VAE) + FaceDetailer - Illustrious | Illustrious |
 
 Model and LoRA files are **not** included. Download them from the links in each README.
 
