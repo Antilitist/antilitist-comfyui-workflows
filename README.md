@@ -17,6 +17,7 @@ Family-friendly ComfyUI workflows. Each folder has the workflow JSON (drag it in
 | [halloween_mummy_megumin](halloween_mummy_megumin/) | Cute Halloween mummy Megumin - Anima | Anima |
 | [d2_xyplot_lora_cfg_test](d2_xyplot_lora_cfg_test/) | D2 Nodes XY Plot: Frieren LoRA strength x CFG comparison grid (needs D2 Nodes) - Illustrious | Illustrious |
 | [rebecca_illustrious](rebecca_illustrious/) | Rebecca (Cyberpunk: Edgerunners) on a rainy neon street, 1.5x upscale + fix pass (BloodRedKittie LoRA; note node to swap to Vaporvvave) - Illustrious | Illustrious |
+| [elaina_illustrious](elaina_illustrious/) | Elaina (Wandering Witch) at a cafe terrace, 1.5x hi-res fix (tiled VAE) - Illustrious | Illustrious |
 | [semireal_illustrious](semireal_illustrious/) | Semi-real 2.5D, low key darkness slider LoRA, 1.5x hi-res fix (tiled VAE) + FaceDetailer - Illustrious | Illustrious |
 
 Model and LoRA files are **not** included. Download them from the links in each README.
